@@ -1,0 +1,21 @@
+<div class="insurer-shell">
+  <header class="bar">
+    <a routerLink="/insurer/dashboard" class="brand">InsureTracker</a>
+    <nav class="links">
+      <a routerLink="/insurer/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+      <a routerLink="/insurer/claims" routerLinkActive="active">My Claims</a>
+      <a routerLink="/insurer/pre-auth" routerLinkActive="active">Pre-Auth</a>
+      <a routerLink="/insurer/health-score" routerLinkActive="active">Health Score</a>
+      <a routerLink="/insurer/ratings" routerLinkActive="active">Ratings</a>
+      <a routerLink="/insurer/profile" routerLinkActive="active">Profile</a>
+    </nav>
+    <div class="tools">
+      <a routerLink="/insurer/notifications" class="icon" aria-label="Notifications">🔔</a>
+      <a routerLink="/insurer/profile" class="icon" aria-label="Profile">👤</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <router-outlet />
+  </main>
+</div>

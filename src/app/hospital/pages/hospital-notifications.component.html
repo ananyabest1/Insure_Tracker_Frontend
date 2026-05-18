@@ -1,0 +1,22 @@
+<div class="toolbar">
+  <h1 class="page-title" style="margin: 0">Notifications</h1>
+  <button type="button" class="btn btn-secondary" (click)="markAll()">Mark all as read</button>
+</div>
+<p class="page-sub">Billing, documents, and pre-auth updates.</p>
+
+<div class="stack-list">
+  @for (n of items(); track n.title) {
+    <div class="card note" [class.unread]="n.unread">
+      <div class="row">
+        <strong>{{ n.title }}</strong>
+        @if (n.unread) {
+          <span class="dot"></span>
+        }
+      </div>
+      <div class="muted">{{ n.body }}</div>
+      <div class="time">{{ n.time }}</div>
+    </div>
+  }
+</div>
+
+<p class="page-sub"><a class="link" routerLink="/hospital/dashboard">Back</a></p>

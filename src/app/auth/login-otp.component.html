@@ -1,0 +1,60 @@
+<div class="auth-page auth-page--elevated">
+  <div class="card auth-card">
+    <div class="card-cap">{{ title() }}</div>
+    <p class="lead">We’ll send a one-time code to your registered email or mobile (demo flow).</p>
+
+    <form [formGroup]="form" (ngSubmit)="verify()">
+      <div class="field">
+        <label>
+          @switch (portal()) {
+            @case ('company') {
+              Company email<span class="req">*</span>
+            }
+            @case ('hospital') {
+              Hospital email / ID<span class="req">*</span>
+            }
+            @default {
+              Email or mobile<span class="req">*</span>
+            }
+          }
+        </label>
+        <input
+          formControlName="identifier"
+          [attr.maxlength]="portal() === 'insurer' && !String(form.controls.identifier.value ?? '').includes('@') ? 10 : null"
+          (input)="onIdentifierInput()"
+          [placeholder]="portal() === 'company' ? 'you@gmail.com' : portal() === 'hospital' ? 'Email or hospital ID' : 'Email or 10-digit mobile'"
+          autocomplete="username"
+        />
+        @if (form.controls.identifier.touched && form.controls.identifier.hasError('emailDomain')) {
+          <span class="err">Use an allowed email domain (gmail, yahoo, outlook, hotmail, live, icloud, zoho).</span>
+        }
+        @if (form.controls.identifier.touched && form.controls.identifier.hasError('mobileTen')) {
+          <span class="err">Mobile must be exactly 10 digits.</span>
+        }
+        @if (form.controls.identifier.touched && form.controls.identifier.hasError('hospitalId')) {
+          <span class="err">Use a valid email, 10-digit mobile, or hospital ID (letters/numbers).</span>
+        }
+      </div>
+
+      @if (otpSent()) {
+        <div class="field">
+          <label>Enter OTP<span class="req">*</span></label>
+          <input formControlName="otp" maxlength="6" inputmode="numeric" placeholder="6-digit code" autocomplete="one-time-code" />
+          @if (form.controls.otp.touched && form.controls.otp.invalid) {
+            <span class="err">Enter the 6-digit code.</span>
+          }
+        </div>
+      }
+
+      <div class="stack">
+        @if (!otpSent()) {
+          <button class="btn btn-primary btn-block" type="button" (click)="sendOtp()">Send OTP</button>
+        } @else {
+          <button class="btn btn-primary btn-block" type="submit">Verify &amp; continue</button>
+          <button class="btn btn-secondary btn-block" type="button" (click)="sendOtp()">Resend OTP</button>
+        }
+        <a class="btn btn-secondary btn-block" routerLink="/login">Back to password login</a>
+      </div>
+    </form>
+  </div>
+</div>

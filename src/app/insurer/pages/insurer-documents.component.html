@@ -1,0 +1,36 @@
+<h1 class="page-title">My documents</h1>
+<p class="page-sub">Upload and manage your claim related documents.</p>
+
+<div class="card" style="padding: 1rem; margin-bottom: 1rem">
+  <div class="upload-zone" tabindex="0" role="button">☁<strong>Upload new document</strong>Drag &amp; drop or click (demo)</div>
+</div>
+
+<div class="table-wrap">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Document name</th>
+        <th>Type</th>
+        <th>Uploaded on</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (d of rows(); track d.name; let i = $index) {
+        <tr>
+          <td><strong>{{ d.name }}</strong></td>
+          <td>{{ d.type }}</td>
+          <td>{{ d.uploaded }}</td>
+          <td>
+            <button type="button" class="btn btn-ghost" (click)="remove(i)">Delete</button>
+            <button type="button" class="btn btn-ghost">Download</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div style="margin-top: 1rem; display: flex; justify-content: center">
+  <a class="btn btn-primary" routerLink="/insurer/claims/raise">Continue claim flow</a>
+</div>

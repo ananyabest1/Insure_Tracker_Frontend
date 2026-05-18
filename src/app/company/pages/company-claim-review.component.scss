@@ -1,0 +1,33 @@
+.kv {
+  margin: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.kv div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 0.75rem;
+}
+
+.kv dt {
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 0.78rem;
+}
+
+.kv dd {
+  margin: 0;
+  font-weight: 650;
+}
+
+.footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1;
+}
