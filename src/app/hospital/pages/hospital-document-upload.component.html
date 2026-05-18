@@ -1,0 +1,80 @@
+<h1 class="page-title">Upload medical documents</h1>
+<p class="page-sub">Upload relevant medical documents to support claim processing.</p>
+
+<div class="grid cols-2">
+  <form class="card" style="padding: 1.25rem" [formGroup]="form">
+    <div class="grid cols-2">
+      <div class="field">
+        <label>Claim ID<span class="req">*</span></label>
+        <input formControlName="claimId" placeholder="Enter claim ID" />
+      </div>
+      <div class="field">
+        <label>Patient name<span class="req">*</span></label>
+        <input formControlName="patient" placeholder="Enter patient name" />
+      </div>
+    </div>
+    <div class="grid cols-2" style="margin-top: 0.75rem">
+      <div class="field">
+        <label>Document type<span class="req">*</span></label>
+        <select formControlName="docType">
+          <option value="" disabled selected hidden>Select document type</option>
+          <option>Lab report</option>
+          <option>Prescription</option>
+          <option>Imaging</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Document title<span class="req">*</span></label>
+        <input formControlName="title" placeholder="Enter document title" />
+      </div>
+    </div>
+    <div class="grid cols-2" style="margin-top: 0.75rem">
+      <div class="field">
+        <label>Date of service<span class="req">*</span></label>
+        <input type="date" formControlName="serviceDate" />
+      </div>
+      <div class="field">
+        <label>Notes (optional)</label>
+        <textarea formControlName="notes" placeholder="Enter any additional notes"></textarea>
+      </div>
+    </div>
+  </form>
+
+  <div class="card" style="padding: 1.25rem">
+    <div class="upload-zone" tabindex="0" role="button">☁<strong>Upload file</strong>Drag and drop files here or click to browse</div>
+    <p class="hint" style="margin: 0.75rem 0 0; color: var(--muted); font-size: 0.85rem">Accepted formats: PDF, JPG, JPEG, PNG · Max 10MB</p>
+  </div>
+</div>
+
+<h2 class="section-title" style="margin-top: 1.25rem">Uploaded documents</h2>
+<div class="table-wrap">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Document name</th>
+        <th>Type</th>
+        <th>Uploaded on</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (d of rows(); track d.name; let i = $index) {
+        <tr>
+          <td><strong>{{ d.name }}</strong></td>
+          <td>{{ d.type }}</td>
+          <td>{{ d.on }}</td>
+          <td><span class="badge success">Uploaded</span></td>
+          <td>
+            <button type="button" class="btn btn-ghost" (click)="remove(i)" aria-label="Delete">🗑</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="footer-actions" style="margin-top: 1rem; justify-content: flex-end">
+  <a class="btn btn-secondary" routerLink="/hospital/dashboard">Cancel</a>
+  <button type="button" class="btn btn-primary" (click)="upload()">Upload document</button>
+</div>

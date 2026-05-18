@@ -1,0 +1,56 @@
+@if (claim(); as c) {
+  <div class="toolbar">
+    <a class="link" routerLink="/insurer/claims">← Back to claims</a>
+    <span class="badge info">{{ c.status }}</span>
+  </div>
+
+  <h1 class="page-title">Claim tracker {{ c.id }}</h1>
+  <p class="page-sub">Apollo Hospital · {{ c.patient }}</p>
+
+  <div class="stepper card" style="padding: 1rem">
+    @for (s of c.steps; track $index; let i = $index) {
+      <div class="step" [class.active]="s.active" [class.done]="s.done && !s.active">
+        <span class="dot">{{ s.done && !s.active ? '✓' : i + 1 }}</span>
+        {{ s.label }}
+      </div>
+      @if (i < c.steps.length - 1) {
+        <span class="sep">—</span>
+      }
+    }
+  </div>
+
+  <div class="grid cols-2" style="margin-top: 1rem">
+    <div class="card">
+      <h3 class="section-title">Claim details</h3>
+      <dl class="kv">
+        <div><dt>Claim ID</dt><dd>{{ c.id }}</dd></div>
+        <div><dt>Hospital</dt><dd>{{ c.hospital }}</dd></div>
+        <div><dt>Patient</dt><dd>{{ c.patient }}</dd></div>
+        <div><dt>Admission</dt><dd>May 02, 2025</dd></div>
+        <div><dt>Discharge</dt><dd>May 08, 2025</dd></div>
+        <div><dt>Claim amount</dt><dd>{{ c.amount }}</dd></div>
+        <div><dt>Policy number</dt><dd>SH-889921</dd></div>
+        <div><dt>Progress</dt><dd>2 of 4 steps</dd></div>
+        <div><dt>Assigned to</dt><dd>Claims desk B</dd></div>
+        <div><dt>TAT</dt><dd>5 business days</dd></div>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h3 class="section-title">Activity timeline</h3>
+      <ul class="timeline">
+        <li><strong>Submitted</strong><span>May 09, 2025 · 10:12 AM</span></li>
+        <li><strong>Documents received</strong><span>May 09, 2025 · 11:40 AM</span></li>
+        <li><strong>Under medical review</strong><span>May 10, 2025 · 09:05 AM</span></li>
+      </ul>
+
+      <h3 class="section-title" style="margin-top: 1rem">Notification log</h3>
+      <div class="log card" style="box-shadow: none; border-style: dashed">
+        <div>System: Claim moved to review.</div>
+        <div>Insurer: Additional document optional.</div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <p>Claim not found. <a class="link" routerLink="/insurer/claims">Return to list</a></p>
+}

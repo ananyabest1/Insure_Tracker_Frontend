@@ -3,11 +3,41 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+<<<<<<< HEAD
     "insuretracker-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+=======
+    "insure-tracker": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+>>>>>>> de515c0646dd4bf95b8a0c51f15110f26de1a4cf
         }
       },
       "root": "",
@@ -17,7 +47,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+<<<<<<< HEAD
             "outputPath": "dist/insuretracker-frontend",
+=======
+            "outputPath": "dist/insure-tracker",
+>>>>>>> de515c0646dd4bf95b8a0c51f15110f26de1a4cf
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +98,17 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
+<<<<<<< HEAD
               "buildTarget": "insuretracker-frontend:build:production"
             },
             "development": {
               "buildTarget": "insuretracker-frontend:build:development"
+=======
+              "buildTarget": "insure-tracker:build:production"
+            },
+            "development": {
+              "buildTarget": "insure-tracker:build:development"
+>>>>>>> de515c0646dd4bf95b8a0c51f15110f26de1a4cf
             }
           },
           "defaultConfiguration": "development"
@@ -100,6 +141,10 @@
     }
   },
   "cli": {
+<<<<<<< HEAD
     "analytics": false
+=======
+    "analytics": "f7fd03a0-c79f-4643-81af-ad4e524ec061"
+>>>>>>> de515c0646dd4bf95b8a0c51f15110f26de1a4cf
   }
 }

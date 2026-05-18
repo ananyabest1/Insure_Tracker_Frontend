@@ -1,0 +1,27 @@
+<h1 class="page-title">Ratings</h1>
+<p class="page-sub">Rate your experience with hospitals and the claim journey.</p>
+
+<div class="card" style="padding: 1.25rem">
+  <div class="field">
+    <label>Overall rating</label>
+    <div class="star-pick">
+      @for (n of [1, 2, 3, 4, 5]; track n) {
+        <button type="button" class="star" [class.on]="stars() >= n" (click)="setStars(n)">★</button>
+      }
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Comments<span class="req">*</span></label>
+      <textarea formControlName="feedback" placeholder="Share details about your experience"></textarea>
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>What can improve?<span class="req">*</span></label>
+      <textarea formControlName="improve" placeholder="Optional specifics"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit" style="margin-top: 0.75rem">Submit rating</button>
+  </form>
+</div>
+
+<p class="page-sub"><a class="link" routerLink="/insurer/dashboard">Back</a></p>

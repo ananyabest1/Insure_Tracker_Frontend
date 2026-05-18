@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # InsuretrackerFrontend
+=======
+# InsureTracker
+>>>>>>> de515c0646dd4bf95b8a0c51f15110f26de1a4cf
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.25.
 

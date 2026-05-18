@@ -1,0 +1,51 @@
+<h1 class="page-title">Incoming claims</h1>
+<p class="page-sub">Search, filter, and open a claim for verification.</p>
+
+<div class="tabs" style="margin-bottom: 0.75rem">
+  <button type="button" class="tab" [class.active]="filter() === 'All'" (click)="setFilter('All')">All</button>
+  <button type="button" class="tab" [class.active]="filter() === 'New'" (click)="setFilter('New')">New</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Under Review'" (click)="setFilter('Under Review')">Under review</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Approved'" (click)="setFilter('Approved')">Approved</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Rejected'" (click)="setFilter('Rejected')">Rejected</button>
+</div>
+
+<div class="toolbar card" style="padding: 0.75rem 1rem; margin-bottom: 0.75rem">
+  <input class="search" placeholder="Search by Claim ID…" />
+  <button type="button" class="btn btn-secondary">Filter</button>
+</div>
+
+<div class="table-wrap">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Claim ID</th>
+        <th>Hospital</th>
+        <th>Patient</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (c of filtered(); track c.id) {
+        <tr>
+          <td>
+            <div><strong>{{ c.id }}</strong></div>
+            <div class="muted">{{ c.date }}</div>
+          </td>
+          <td>{{ c.hospital }}</td>
+          <td>{{ c.patient }}</td>
+          <td><strong>{{ c.amount }}</strong></td>
+          <td><span class="badge" [class]="badge(c.status)">{{ c.status }}</span></td>
+          <td>
+            <a class="btn btn-primary" [routerLink]="['/company/claims/review', c.id]">View</a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div style="margin-top: 1rem; display: flex; justify-content: center">
+  <a class="btn btn-secondary" routerLink="/company/dashboard">Back</a>
+</div>

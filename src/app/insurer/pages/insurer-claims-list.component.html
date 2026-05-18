@@ -1,0 +1,31 @@
+<h1 class="page-title">Track insurance claims</h1>
+<p class="page-sub">Filter, open a claim, and follow progress end-to-end.</p>
+
+<div class="tabs" role="tablist">
+  <button type="button" class="tab" [class.active]="filter() === 'All'" (click)="setFilter('All')">All</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Under Review'" (click)="setFilter('Under Review')">In progress</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Approved'" (click)="setFilter('Approved')">Approved</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Settled'" (click)="setFilter('Settled')">Settled</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Closed'" (click)="setFilter('Closed')">Closed</button>
+  <a class="btn btn-secondary" routerLink="/insurer/claims/raise">Raise claim</a>
+</div>
+
+<div class="stack-list">
+  @for (c of filtered(); track c.id) {
+    <a class="card claim-row" [routerLink]="['/insurer/claims/track', c.id]">
+      <div>
+        <div class="id">{{ c.id }}</div>
+        <div class="muted">{{ c.hospital }} · {{ c.date }}</div>
+      </div>
+      <div class="right">
+        <div class="amount">{{ c.amount }}</div>
+        <span class="badge {{ badgeClass(c.status) }}">{{ c.status }}</span>
+        <span class="chev">›</span>
+      </div>
+    </a>
+  }
+</div>
+
+<div style="margin-top: 1rem; display: flex; justify-content: center">
+  <a class="btn btn-secondary" routerLink="/insurer/dashboard">Back to dashboard</a>
+</div>

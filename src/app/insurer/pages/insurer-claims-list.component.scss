@@ -1,0 +1,44 @@
+.stack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.claim-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.claim-row:hover {
+  border-color: #a1a1aa;
+}
+
+.id {
+  font-weight: 800;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.15rem;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.amount {
+  font-weight: 800;
+}
+
+.chev {
+  font-size: 1.4rem;
+  color: var(--muted);
+}

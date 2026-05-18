@@ -1,0 +1,52 @@
+<h1 class="page-title">My profile</h1>
+<p class="page-sub">Company information and security.</p>
+
+<div class="grid cols-2">
+  <form class="card" style="padding: 1.25rem" [formGroup]="company" (ngSubmit)="save()">
+    <h3 class="section-title">Company information</h3>
+    <div class="field">
+      <label>Company name</label>
+      <input formControlName="name" />
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Company email</label>
+      <input formControlName="email" />
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Mobile number</label>
+      <input formControlName="mobile" />
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Address</label>
+      <textarea formControlName="address" style="min-height: 90px"></textarea>
+    </div>
+  </form>
+
+  <form class="card" style="padding: 1.25rem" [formGroup]="passwords">
+    <h3 class="section-title">Change password</h3>
+    <div class="field">
+      <label>Current password</label>
+      <div class="input-icon">
+        <input [type]="show.c ? 'text' : 'password'" formControlName="current" />
+        <button type="button" class="icon-btn" (click)="toggle('c')">{{ show.c ? '🙈' : '👁' }}</button>
+      </div>
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>New password</label>
+      <div class="input-icon">
+        <input [type]="show.n ? 'text' : 'password'" formControlName="next" />
+        <button type="button" class="icon-btn" (click)="toggle('n')">{{ show.n ? '🙈' : '👁' }}</button>
+      </div>
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Confirm password</label>
+      <div class="input-icon">
+        <input [type]="show.cn ? 'text' : 'password'" formControlName="confirm" />
+        <button type="button" class="icon-btn" (click)="toggle('cn')">{{ show.cn ? '🙈' : '👁' }}</button>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="button" style="margin-top: 1rem" (click)="save()">Save changes</button>
+  </form>
+</div>
+
+<p class="page-sub"><a class="link" routerLink="/login">Logout (demo)</a></p>

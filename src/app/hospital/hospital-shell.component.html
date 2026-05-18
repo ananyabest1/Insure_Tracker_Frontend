@@ -1,0 +1,23 @@
+<div class="hospital-shell">
+  <header class="top">
+    <a routerLink="/hospital/dashboard" class="brand">InsureTracker</a>
+    <div class="tools">
+      <a routerLink="/hospital/notifications" class="icon" aria-label="Notifications">🔔</a>
+      <a routerLink="/hospital/notifications" class="icon" aria-label="Messages">✉</a>
+      <a routerLink="/hospital/profile" class="icon" aria-label="Profile">👤</a>
+    </div>
+  </header>
+
+  <nav class="subnav">
+    <a routerLink="/hospital/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+    <a routerLink="/hospital/documents" routerLinkActive="active">Document upload</a>
+    <a routerLink="/hospital/billing" routerLinkActive="active">Billing</a>
+    <a routerLink="/hospital/pre-auth" routerLinkActive="active">Pre-auth</a>
+    <a routerLink="/hospital/notifications" routerLinkActive="active">Notifications</a>
+    <a routerLink="/hospital/profile" routerLinkActive="active">Profile</a>
+  </nav>
+
+  <main class="main">
+    <router-outlet />
+  </main>
+</div>

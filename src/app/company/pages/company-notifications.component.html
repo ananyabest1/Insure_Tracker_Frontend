@@ -1,0 +1,30 @@
+<div class="toolbar">
+  <h1 class="page-title" style="margin: 0">Notifications center</h1>
+  <button type="button" class="btn btn-secondary" (click)="markAll()">Mark all as read</button>
+</div>
+<p class="page-sub">Filter by category (demo).</p>
+
+<div class="tabs" style="margin-bottom: 0.75rem">
+  <button type="button" class="tab" [class.active]="filter() === 'All'" (click)="setFilter('All')">All</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Claims'" (click)="setFilter('Claims')">Claims</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Pre-Auth'" (click)="setFilter('Pre-Auth')">Pre-auth</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Complaints'" (click)="setFilter('Complaints')">Complaints</button>
+  <button type="button" class="tab" [class.active]="filter() === 'System'" (click)="setFilter('System')">System</button>
+</div>
+
+<div class="stack-list">
+  @for (n of filtered(); track n.title) {
+    <div class="card note" [class.unread]="n.unread">
+      <div class="row">
+        <strong>{{ n.title }}</strong>
+        @if (n.unread) {
+          <span class="dot"></span>
+        }
+      </div>
+      <div class="muted">{{ n.body }}</div>
+      <div class="time">{{ n.time }}</div>
+    </div>
+  }
+</div>
+
+<p class="page-sub"><a class="link" routerLink="/company/dashboard">Back</a></p>
