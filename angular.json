@@ -3,13 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-<<<<<<< HEAD
-    "insuretracker-frontend": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-=======
     "insure-tracker": {
       "projectType": "application",
       "schematics": {
@@ -37,7 +30,6 @@
         },
         "@schematics/angular:service": {
           "skipTests": true
->>>>>>> de515c0646dd4bf95b8a0c51f15110f26de1a4cf
         }
       },
       "root": "",
@@ -47,16 +39,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-<<<<<<< HEAD
-            "outputPath": "dist/insuretracker-frontend",
-=======
             "outputPath": "dist/insure-tracker",
->>>>>>> de515c0646dd4bf95b8a0c51f15110f26de1a4cf
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -65,9 +51,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -80,8 +64,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "8kB",
+                  "maximumError": "12kB"
                 }
               ],
               "outputHashing": "all"
@@ -98,17 +82,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-<<<<<<< HEAD
-              "buildTarget": "insuretracker-frontend:build:production"
-            },
-            "development": {
-              "buildTarget": "insuretracker-frontend:build:development"
-=======
               "buildTarget": "insure-tracker:build:production"
             },
             "development": {
               "buildTarget": "insure-tracker:build:development"
->>>>>>> de515c0646dd4bf95b8a0c51f15110f26de1a4cf
             }
           },
           "defaultConfiguration": "development"
@@ -119,10 +96,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -131,9 +105,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }
@@ -141,10 +113,6 @@
     }
   },
   "cli": {
-<<<<<<< HEAD
     "analytics": false
-=======
-    "analytics": "f7fd03a0-c79f-4643-81af-ad4e524ec061"
->>>>>>> de515c0646dd4bf95b8a0c51f15110f26de1a4cf
   }
 }

@@ -1,7 +1,14 @@
 <div class="auth-page auth-page--elevated">
+  <div class="auth-layout auth-layout--wide">
+    <aside class="auth-hero">
+      <div class="auth-hero-badge">New member</div>
+      <h1>Join <span>InsureTracker</span></h1>
+      <p class="auth-hero-desc">Create your insurer profile and start managing health claims with a modern, secure experience.</p>
+    </aside>
+    <div class="auth-panel">
   <div class="card auth-card wide">
     <div class="card-cap">Create account</div>
-    <p class="lead">Join InsureTracker as an insurer (demo registration).</p>
+    <p class="auth-lead">Join InsureTracker as an insurer (demo registration).</p>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="grid cols-1">
@@ -105,5 +112,7 @@
     </form>
 
     <p class="footer-line">Already registered? <a routerLink="/login" class="link link-em">Sign in</a></p>
+  </div>
+    </div>
   </div>
 </div>

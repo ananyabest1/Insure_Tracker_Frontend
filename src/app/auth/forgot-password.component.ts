@@ -1,7 +1,12 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { allowedEmailDomainValidator, passwordsMatchGroupValidator, strongPasswordValidator } from '../core/auth.validators';
+import {
+  allowedEmailDomainValidator,
+  getPasswordRuleStatus,
+  passwordsMatchGroupValidator,
+  strongPasswordValidator,
+} from '../core/auth.validators';
 
 @Component({
   selector: 'app-forgot-password',
@@ -27,7 +32,13 @@ export class ForgotPasswordComponent {
     { validators: passwordsMatchGroupValidator },
   );
 
+  readonly ruleStatus = computed(() => getPasswordRuleStatus(this.form.controls.password.value));
+
   onPasswordFocus(): void {
+    this.showRules.set(true);
+  }
+
+  onPasswordInput(): void {
     this.showRules.set(true);
   }
 

@@ -1,39 +1,5 @@
 import { Routes } from '@angular/router';
 
-<<<<<<< HEAD
-import { LoginComponent } from './pages/login/login.component';
-import { NotificationsComponent } from './pages/notifications/notifications.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ClaimReviewComponent } from './pages/claim-review/claim-review.component';
-
-export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-
-  {
-    path: 'notifications',
-    component: NotificationsComponent,
-  },
-
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-  },
-
-  {
-    path: 'claim-review',
-    component: ClaimReviewComponent,
-  },
-];
-=======
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   {
@@ -183,4 +149,3 @@ export const routes: Routes = [
   },
   { path: '**', redirectTo: 'login' },
 ];
->>>>>>> de515c0646dd4bf95b8a0c51f15110f26de1a4cf

@@ -21,6 +21,8 @@ export class LoginOtpComponent {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
+  protected readonly String = String;
+
   readonly portal = signal<Portal>('insurer');
   readonly otpSent = signal(false);
 
@@ -67,6 +69,17 @@ export class LoginOtpComponent {
         return 'OTP login · Insurer';
     }
   };
+
+  setPortal(p: Portal): void {
+    this.portal.set(p);
+    this.otpSent.set(false);
+    this.form.controls.otp.reset('');
+    this.form.controls.otp.clearValidators();
+    this.form.controls.otp.updateValueAndValidity({ emitEvent: false });
+    this.applyIdentifierValidators();
+    this.form.controls.identifier.setErrors(null);
+    this.form.controls.identifier.markAsUntouched();
+  }
 
   onIdentifierInput(): void {
     if (this.portal() !== 'insurer') {

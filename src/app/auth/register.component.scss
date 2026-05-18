@@ -1,55 +1,12 @@
-.auth-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 1rem 3rem;
-}
-
-.auth-page--elevated {
-  background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(16, 185, 129, 0.18), transparent 55%),
-    radial-gradient(900px 500px at 110% 0%, rgba(5, 150, 105, 0.12), transparent 50%),
-    linear-gradient(180deg, #ffffff 0%, #f0fdf4 55%, #ecfdf5 100%);
-}
-
-.auth-card {
-  width: min(720px, 100%);
-  padding: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-card);
-}
-
-.wide {
-  width: min(720px, 100%);
-}
-
-.card-cap {
-  background: linear-gradient(180deg, var(--surface-muted), #ffffff);
-  border-bottom: 1px solid var(--border);
-  padding: 0.85rem 1rem;
-  text-align: center;
-  font-weight: 800;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--primary-dark);
-}
-
-.lead {
-  margin: 0;
-  padding: 1rem 1.25rem 0;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.55;
+:host {
+  display: block;
 }
 
 .cols-1 {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  padding: 0 1.25rem;
+  padding: 0 1.35rem;
 }
 
 .auth-card form {
@@ -59,48 +16,5 @@
 .actions {
   display: flex;
   justify-content: flex-end;
-  padding: 0 1.25rem 1rem;
-}
-
-.footer-line {
-  text-align: center;
-  padding: 0 1.25rem 1.35rem;
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.input-icon {
-  position: relative;
-}
-
-.input-icon input {
-  padding-right: 2.75rem;
-}
-
-.icon-btn.eye {
-  color: var(--primary);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.icon-btn.eye svg {
-  display: block;
-}
-
-.err {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 0.82rem;
-  color: var(--danger);
-  font-weight: 600;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  outline: none;
-  border-color: rgba(16, 185, 129, 0.55);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+  padding: 0 1.35rem 1rem;
 }

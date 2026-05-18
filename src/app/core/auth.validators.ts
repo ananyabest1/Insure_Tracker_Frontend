@@ -93,7 +93,7 @@ export function strongPasswordValidator(control: AbstractControl): ValidationErr
   if (!v) {
     return null;
   }
-  const errors: Record<string, true> = {};
+  const errors: { minLen?: true; upper?: true; lower?: true; digit?: true; special?: true } = {};
   if (v.length < 8) {
     errors.minLen = true;
   }
@@ -110,6 +110,24 @@ export function strongPasswordValidator(control: AbstractControl): ValidationErr
     errors.special = true;
   }
   return Object.keys(errors).length ? { passwordStrength: errors } : null;
+}
+
+export interface PasswordRuleStatus {
+  minLen: boolean;
+  upper: boolean;
+  lower: boolean;
+  digit: boolean;
+  special: boolean;
+}
+
+export function getPasswordRuleStatus(value: string): PasswordRuleStatus {
+  return {
+    minLen: value.length >= 8,
+    upper: /[A-Z]/.test(value),
+    lower: /[a-z]/.test(value),
+    digit: /\d/.test(value),
+    special: /[^A-Za-z0-9]/.test(value),
+  };
 }
 
 export function passwordsMatchGroupValidator(group: AbstractControl): ValidationErrors | null {

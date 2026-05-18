@@ -20,6 +20,8 @@ export class LoginComponent {
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
 
+  protected readonly String = String;
+
   readonly portal = signal<Portal>('insurer');
   readonly showPassword = signal(false);
 
