@@ -1,0 +1,30 @@
+<div class="company-shell">
+  <aside class="side">
+    <div class="brand">Insure<span>Tracker</span></div>
+    <nav class="nav">
+      <a routerLink="/company/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+      <a routerLink="/company/claims" routerLinkActive="active">Incoming claims</a>
+      <a routerLink="/company/pre-auth" routerLinkActive="active">Pre-auth requests</a>
+      <a routerLink="/company/policies" routerLinkActive="active">Policies</a>
+      <a routerLink="/company/complaints" routerLinkActive="active">Complaints</a>
+      <a routerLink="/company/reports" routerLinkActive="active">Reports</a>
+      <a routerLink="/company/notifications" routerLinkActive="active">Notifications</a>
+      <a routerLink="/company/profile" routerLinkActive="active">Profile</a>
+      <a routerLink="/company/feedback" routerLinkActive="active">Feedback</a>
+    </nav>
+    <a class="btn btn-secondary" routerLink="/login" style="margin-top: auto">Switch portal</a>
+  </aside>
+
+  <div class="rest">
+    <header class="top">
+      <div class="title">Insurance company portal</div>
+      <div class="tools">
+        <a routerLink="/company/notifications" class="icon" aria-label="Notifications">🔔</a>
+        <a routerLink="/company/profile" class="icon" aria-label="Profile">👤</a>
+      </div>
+    </header>
+    <main class="main">
+      <router-outlet />
+    </main>
+  </div>
+</div>

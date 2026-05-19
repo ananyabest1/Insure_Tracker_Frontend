@@ -1,0 +1,113 @@
+<h1 class="page-title">Pre-authorization requests</h1>
+<p class="page-sub">Submit a request and track hospital-side history.</p>
+
+<form class="card" style="padding: 1.25rem" [formGroup]="form" (ngSubmit)="submit()">
+  <h3 class="section-title">Submit pre-authorization request</h3>
+
+  <div class="grid cols-2">
+    <div class="field">
+      <label>Request type<span class="req">*</span></label>
+      <select formControlName="requestType">
+        <option value="" disabled selected hidden>Select request type</option>
+        <option>Surgery</option>
+        <option>ICU</option>
+        <option>Investigation</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Treatment / procedure<span class="req">*</span></label>
+      <input formControlName="treatment" placeholder="Enter treatment or procedure" />
+    </div>
+
+    <div class="field">
+      <label>Claim ID<span class="req">*</span></label>
+      <input formControlName="claimId" placeholder="Enter claim ID" />
+    </div>
+    <div class="field">
+      <label>Estimated amount<span class="req">*</span></label>
+      <input formControlName="estAmount" placeholder="Enter estimated amount" />
+    </div>
+
+    <div class="field">
+      <label>Patient name<span class="req">*</span></label>
+      <input formControlName="patient" placeholder="Search patient name" />
+    </div>
+    <div class="field">
+      <label>Requested date<span class="req">*</span></label>
+      <input type="date" formControlName="reqDate" />
+    </div>
+
+    <div class="field">
+      <label>Insurance company<span class="req">*</span></label>
+      <select formControlName="insurer">
+        <option value="" disabled selected hidden>Select insurance company</option>
+        <option>Star Health</option>
+        <option>Acme Insurance</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Priority<span class="req">*</span></label>
+      <select formControlName="priority">
+        <option value="" disabled selected hidden>Select priority</option>
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+      </select>
+    </div>
+
+    <div class="field" style="grid-column: 1 / -1">
+      <label>Policy number<span class="req">*</span></label>
+      <input formControlName="policy" placeholder="Enter policy number" />
+    </div>
+  </div>
+
+  <div class="field" style="margin-top: 0.75rem">
+    <label>Description / medical justification<span class="req">*</span></label>
+    <textarea formControlName="description" placeholder="Enter description / medical justification"></textarea>
+  </div>
+
+  <div class="field" style="margin-top: 0.75rem">
+    <label>Supporting documents</label>
+    <div class="upload-zone" tabindex="0" role="button">☁<strong>Drag &amp; drop files here or click to browse</strong>PDF, JPG, PNG · Max 10MB each</div>
+  </div>
+
+  <div class="footer-actions" style="margin-top: 1rem">
+    <a class="btn btn-secondary" routerLink="/hospital/dashboard">Cancel</a>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" type="submit">Submit request</button>
+  </div>
+</form>
+
+<h2 class="section-title" style="margin-top: 1.25rem">Request history</h2>
+<div class="table-wrap">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Request ID</th>
+        <th>Patient</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (h of history(); track h.id) {
+        <tr>
+          <td><strong>{{ h.id }}</strong></td>
+          <td>{{ h.patient }}</td>
+          <td>{{ h.date }}</td>
+          <td>
+            <span
+              class="badge"
+              [class.success]="h.status === 'Approved'"
+              [class.warn]="h.status === 'Pending'"
+              [class.neutral]="h.status === 'Rejected'"
+              >{{ h.status }}</span
+            >
+          </td>
+          <td><button type="button" class="btn btn-secondary">View details</button></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,88 @@
+<h1 class="page-title">Welcome back, Rahul</h1>
+<p class="page-sub">Your policies, claims, and health score at a glance.</p>
+
+<div class="grid cols-4">
+  <div class="card stat">
+    <div class="stat-label">Total policies</div>
+    <div class="stat-value">15,000</div>
+    <div class="stat-hint">Across insurers</div>
+  </div>
+  <div class="card stat">
+    <div class="stat-label">Active claims</div>
+    <div class="stat-value">1,250</div>
+    <div class="stat-hint">Nationwide (demo)</div>
+  </div>
+  <div class="card stat">
+    <div class="stat-label">Pre-auth requests</div>
+    <div class="stat-value">320</div>
+    <div class="stat-hint">Open + in review</div>
+  </div>
+  <div class="card stat">
+    <div class="stat-label">Complaints</div>
+    <div class="stat-value">45</div>
+    <div class="stat-hint">This quarter</div>
+  </div>
+</div>
+
+<div class="grid cols-2" style="margin-top: 1rem">
+  <div class="card policy">
+    <div class="row">
+      <div>
+        <div class="eyebrow">Active policy</div>
+        <div class="policy-name">Star Health Insurance</div>
+      </div>
+      <div class="amount">₹ 50,00,000</div>
+    </div>
+    <div class="meta">Policy # SH-889921 · Valid till Dec 31, 2026</div>
+    <a class="btn btn-secondary" routerLink="/insurer/documents">View policy</a>
+  </div>
+
+  <div class="card score">
+    <div>
+      <div class="eyebrow">Health score</div>
+      <div class="big">4.1</div>
+      <div class="stars">★★★★☆</div>
+      <div class="status-pill">Good</div>
+    </div>
+    <a class="btn btn-primary" routerLink="/insurer/health-score">View breakdown</a>
+  </div>
+</div>
+
+<div class="quick card" style="margin-top: 1rem">
+  <div class="eyebrow" style="margin-bottom: 0.75rem">Quick actions</div>
+  <div class="circles">
+    <a class="circle" routerLink="/insurer/claims"><span>📄</span>View claims</a>
+    <a class="circle" routerLink="/insurer/pre-auth"><span>🛡</span>Pre-authorizations</a>
+    <a class="circle" routerLink="/insurer/health-score"><span>❤</span>Health score</a>
+    <a class="circle" routerLink="/insurer/notifications"><span>🔔</span>Notifications</a>
+  </div>
+</div>
+
+<div class="card" style="margin-top: 1rem">
+  <div class="toolbar">
+    <h2 style="margin: 0; font-size: 1.05rem">Recent activity</h2>
+    <a class="btn btn-ghost" routerLink="/insurer/claims">View all activity</a>
+  </div>
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Claim ID</th>
+          <th>Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of claims.insurerActivity(); track row.claimId) {
+          <tr>
+            <td>
+              <a class="link" [routerLink]="['/insurer/claims/track', row.claimId]">{{ row.claimId }}</a>
+            </td>
+            <td>{{ row.time }}</td>
+            <td><span class="badge info">{{ row.status }}</span></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

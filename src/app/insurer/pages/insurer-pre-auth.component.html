@@ -1,0 +1,58 @@
+<h1 class="page-title">Pre-authorization (emergency support)</h1>
+<p class="page-sub">Submit emergency details for faster coordination.</p>
+
+<form class="card" style="padding: 1.25rem" [formGroup]="form" (ngSubmit)="submit()">
+  <h3 class="section-title">Emergency details</h3>
+
+  <div class="field">
+    <label>Type of emergency</label>
+    <div class="radio-row">
+      <label class="check"><input type="radio" formControlName="emergencyType" value="Accident" /> Accident</label>
+      <label class="check"><input type="radio" formControlName="emergencyType" value="Critical" /> Critical illness</label>
+      <label class="check"><input type="radio" formControlName="emergencyType" value="Surgery" /> Surgery</label>
+      <label class="check"><input type="radio" formControlName="emergencyType" value="Other" /> Other</label>
+    </div>
+  </div>
+
+  <div class="grid cols-2" style="margin-top: 0.75rem">
+    <div class="field">
+      <label>Hospital name<span class="req">*</span></label>
+      <select formControlName="hospital">
+        <option value="" disabled selected hidden>Select hospital</option>
+        <option>Apollo Hospital</option>
+        <option>Fortis</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Location<span class="req">*</span></label>
+      <input formControlName="location" placeholder="City / branch" />
+    </div>
+    <div class="field">
+      <label>Patient name<span class="req">*</span></label>
+      <input formControlName="patient" placeholder="Enter patient name" />
+    </div>
+    <div class="field">
+      <label>Policy number<span class="req">*</span></label>
+      <input formControlName="policy" placeholder="Enter policy number" />
+    </div>
+  </div>
+
+  <div class="field" style="margin-top: 0.75rem">
+    <label>Description of emergency<span class="req">*</span></label>
+    <textarea formControlName="description" placeholder="Describe the emergency and care needed"></textarea>
+  </div>
+
+  <div class="field" style="margin-top: 0.75rem">
+    <label>Estimated amount (₹)<span class="req">*</span></label>
+    <input formControlName="amount" placeholder="Enter estimated amount" />
+  </div>
+
+  <div class="field" style="margin-top: 0.75rem">
+    <label>Upload supporting document</label>
+    <div class="upload-zone" tabindex="0" role="button">☁<strong>Choose file</strong>PDF / JPG / PNG up to 10MB (demo)</div>
+  </div>
+
+  <button class="btn btn-primary btn-block" style="margin-top: 1rem" type="submit">Submit pre-auth request</button>
+</form>
+
+<p class="page-sub" style="margin-top: 1rem"><a class="link" routerLink="/insurer/dashboard">Back to dashboard</a></p>

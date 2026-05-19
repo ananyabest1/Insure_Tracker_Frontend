@@ -1,0 +1,126 @@
+<h1 class="page-title">Treatment cost &amp; billing</h1>
+<p class="page-sub">Capture charges, itemize lines, and submit for review.</p>
+
+<form [formGroup]="form">
+  <div class="grid cols-2">
+    <div class="card" style="padding: 1.25rem">
+      <h3 class="section-title">Treatment cost &amp; billing</h3>
+
+      <div class="field">
+        <label>Claim ID<span class="req">*</span></label>
+        <input formControlName="claimId" placeholder="Enter claim ID" />
+      </div>
+      <div class="field" style="margin-top: 0.75rem">
+        <label>Patient name<span class="req">*</span></label>
+        <input formControlName="patient" placeholder="Enter patient name" />
+      </div>
+      <div class="field" style="margin-top: 0.75rem">
+        <label>Treatment type<span class="req">*</span></label>
+        <select formControlName="treatment">
+          <option value="" disabled selected hidden>Select treatment type</option>
+          <option>Surgery</option>
+          <option>Medical management</option>
+        </select>
+      </div>
+
+      <div class="grid cols-2" style="margin-top: 0.75rem">
+        <div class="field">
+          <label>Admission date<span class="req">*</span></label>
+          <input type="date" formControlName="admission" />
+        </div>
+        <div class="field">
+          <label>Discharge date<span class="req">*</span></label>
+          <input type="date" formControlName="discharge" />
+        </div>
+      </div>
+
+      <div class="grid cols-2" style="margin-top: 0.75rem">
+        <div class="field">
+          <label>Room charges<span class="req">*</span></label>
+          <input type="number" formControlName="room" placeholder="0" />
+        </div>
+        <div class="field">
+          <label>Procedure charges<span class="req">*</span></label>
+          <input type="number" formControlName="procedure" placeholder="0" />
+        </div>
+        <div class="field">
+          <label>Medicine charges<span class="req">*</span></label>
+          <input type="number" formControlName="medicine" placeholder="0" />
+        </div>
+        <div class="field">
+          <label>Diagnostics charges<span class="req">*</span></label>
+          <input type="number" formControlName="diagnostics" placeholder="0" />
+        </div>
+      </div>
+
+      <div class="field" style="margin-top: 0.75rem">
+        <label>Total estimated cost<span class="req">*</span></label>
+        <input type="number" formControlName="totalEstimated" placeholder="0" />
+      </div>
+
+      <div class="field" style="margin-top: 0.75rem">
+        <label>Additional notes (optional)</label>
+        <textarea formControlName="notes" placeholder="Enter any additional notes"></textarea>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="padding: 1.25rem">
+        <h3 class="section-title">Itemized charges</h3>
+        <div class="table-wrap" style="border: none">
+          <table class="data tight">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Amount (₹)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of items.controls; track $index; let i = $index) {
+                <tr [formGroup]="$any(row)">
+                  <td>
+                    <select formControlName="item">
+                      <option value="" disabled selected hidden>Select item</option>
+                      <option>Room</option>
+                      <option>OT</option>
+                      <option>Pharmacy</option>
+                    </select>
+                  </td>
+                  <td style="width: 90px"><input type="number" formControlName="qty" /></td>
+                  <td style="width: 120px"><input type="number" formControlName="amount" /></td>
+                  <td style="width: 52px">
+                    <button type="button" class="btn btn-ghost" (click)="removeItem(i)" aria-label="Remove row">🗑</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <button type="button" class="btn btn-secondary btn-block" style="margin-top: 0.75rem" (click)="addItem()">+ Add item</button>
+      </div>
+
+      <div class="card" style="padding: 1.25rem; margin-top: 1rem">
+        <h3 class="section-title">Billing summary</h3>
+        <div class="sum-row">
+          <span>Subtotal (lines)</span><span>₹ {{ lineSubtotal().toFixed(2) }}</span>
+        </div>
+        <div class="sum-row">
+          <span>Main charges</span><span>₹ {{ mainCharges().toFixed(2) }}</span>
+        </div>
+        <div class="sum-row">
+          <span>Tax / other fees</span><span>₹ 0.00</span>
+        </div>
+        <div class="sum-row total">
+          <span>Total payable</span><span>₹ {{ totalPayable().toFixed(2) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-actions" style="margin-top: 1rem; justify-content: flex-end">
+    <a class="btn btn-secondary" routerLink="/hospital/dashboard">Save draft</a>
+    <button type="button" class="btn btn-primary" (click)="form.markAllAsTouched()">Submit billing</button>
+  </div>
+</form>

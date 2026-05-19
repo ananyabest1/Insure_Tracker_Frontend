@@ -1,0 +1,37 @@
+<h1 class="page-title">View and manage complaints</h1>
+<p class="page-sub">Operational queue (demo data).</p>
+
+<div class="tabs" style="margin-bottom: 0.75rem">
+  <button type="button" class="tab" [class.active]="filter() === 'All'" (click)="setFilter('All')">All</button>
+  <button type="button" class="tab" [class.active]="filter() === 'New'" (click)="setFilter('New')">New</button>
+  <button type="button" class="tab" [class.active]="filter() === 'In Progress'" (click)="setFilter('In Progress')">In progress</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Resolved'" (click)="setFilter('Resolved')">Resolved</button>
+  <button type="button" class="tab" [class.active]="filter() === 'Closed'" (click)="setFilter('Closed')">Closed</button>
+</div>
+
+<div class="table-wrap">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Complaint ID</th>
+        <th>Complainant</th>
+        <th>Subject</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of rows; track r.id) {
+        <tr>
+          <td><strong>{{ r.id }}</strong></td>
+          <td>{{ r.who }}</td>
+          <td>{{ r.subject }}</td>
+          <td>{{ r.date }}</td>
+          <td><span class="badge neutral">{{ r.status }}</span></td>
+          <td><a class="btn btn-secondary" routerLink="/company/complaints">View</a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
