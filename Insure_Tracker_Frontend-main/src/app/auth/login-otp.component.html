@@ -1,0 +1,73 @@
+<div class="auth-page auth-page--elevated">
+  <div class="auth-layout">
+    <aside class="auth-hero">
+      <div class="auth-hero-badge">Passwordless sign-in</div>
+      <h1>Sign in with a <span>one-time code</span></h1>
+      <p class="auth-hero-desc">Secure OTP delivery to your registered email or mobile — no password required for this session.</p>
+      <ul class="auth-features">
+        <li>
+          <span class="auth-feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </span>
+          <div><strong>6-digit verification</strong><span>Codes expire quickly for your protection.</span></div>
+        </li>
+      </ul>
+    </aside>
+    <div class="auth-panel">
+      <div class="card auth-card">
+        <div class="card-cap">{{ title() }}</div>
+        <div class="auth-logo">Insure<span>Tracker</span></div>
+        <div class="segments" role="tablist">
+          <button type="button" class="seg" [class.active]="portal() === 'insurer'" (click)="setPortal('insurer')">Insurer</button>
+          <button type="button" class="seg" [class.active]="portal() === 'company'" (click)="setPortal('company')">Insurance Co.</button>
+          <button type="button" class="seg" [class.active]="portal() === 'hospital'" (click)="setPortal('hospital')">Hospital</button>
+        </div>
+        <p class="auth-lead">We'll send a one-time code to your registered email or mobile.</p>
+        <form class="auth-form" [formGroup]="form" (ngSubmit)="verify()">
+          <div class="field">
+            <label>
+              <ng-container [ngSwitch]="portal()"><ng-container *ngSwitchCase="'company'"> Company email<span class="req">*</span> </ng-container><ng-container *ngSwitchCase="'hospital'"> Hospital email / ID<span class="req">*</span> </ng-container><ng-container *ngSwitchDefault> Email or mobile<span class="req">*</span> </ng-container></ng-container>
+            </label>
+            <input
+              formControlName="identifier"
+              [attr.maxlength]="portal() === 'insurer' && !String(form.controls.identifier.value ?? '').includes('@') ? 10 : 320"
+              (input)="onIdentifierInput()"
+              [placeholder]="portal() === 'company' ? 'you@gmail.com' : portal() === 'hospital' ? 'Email or hospital ID' : 'Email or 10-digit mobile'"
+              autocomplete="username"
+            />
+            <ng-container *ngIf="form.controls.identifier.touched && form.controls.identifier.hasError('required')">
+              <span class="err">This field is required.</span>
+            </ng-container>
+            <ng-container *ngIf="form.controls.identifier.touched && form.controls.identifier.hasError('emailDomain')">
+              <span class="err">Use gmail.com, yahoo.com, outlook.com, hotmail.com, live.com, icloud.com, or zoho.com.</span>
+            </ng-container>
+            <ng-container *ngIf="form.controls.identifier.touched && form.controls.identifier.hasError('mobileTen')">
+              <span class="err">Mobile must be exactly 10 digits.</span>
+            </ng-container>
+            <ng-container *ngIf="form.controls.identifier.touched && form.controls.identifier.hasError('hospitalId')">
+              <span class="err">Use a valid email, 10-digit mobile, or hospital ID.</span>
+            </ng-container>
+          </div>
+          <ng-container *ngIf="otpSent()">
+            <div class="field">
+              <label>Enter OTP<span class="req">*</span></label>
+              <input formControlName="otp" maxlength="6" inputmode="numeric" placeholder="6-digit code" autocomplete="one-time-code" class="otp-input" />
+              <ng-container *ngIf="form.controls.otp.touched && form.controls.otp.invalid">
+                <span class="err">Enter the 6-digit code.</span>
+              </ng-container>
+            </div>
+          </ng-container>
+          <div class="stack">
+            <ng-container *ngIf="!otpSent(); else _e4017">
+              <button class="btn btn-primary btn-block" type="button" (click)="sendOtp()">Send OTP</button>
+            </ng-container><ng-template #_e4017>
+              <button class="btn btn-primary btn-block" type="submit">Verify &amp; continue</button>
+              <button class="btn btn-secondary btn-block" type="button" (click)="sendOtp()">Resend OTP</button>
+            </ng-template>
+            <a class="btn btn-secondary btn-block" routerLink="/login">Back to password login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

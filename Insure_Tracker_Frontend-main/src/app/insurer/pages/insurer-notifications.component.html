@@ -1,0 +1,22 @@
+<div class="toolbar">
+  <h1 class="page-title" style="margin: 0">Notifications</h1>
+  <button type="button" class="btn btn-secondary" (click)="markAllRead()">Mark all as read</button>
+</div>
+<p class="page-sub">System updates related to claims and policy.</p>
+
+<div class="stack-list">
+  <ng-container *ngFor="let n of items(); trackBy: trackByIdentity">
+    <div class="card note" [class.unread]="n.unread">
+      <div class="row">
+        <strong>{{ n.title }}</strong>
+        <ng-container *ngIf="n.unread">
+          <span class="dot"></span>
+        </ng-container>
+      </div>
+      <div class="muted">{{ n.body }}</div>
+      <div class="time">{{ n.time }}</div>
+    </div>
+  </ng-container>
+</div>
+
+<p class="page-sub"><a class="link" routerLink="/insurer/dashboard">Back</a></p>

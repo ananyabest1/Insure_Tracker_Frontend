@@ -1,0 +1,106 @@
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0.35rem 0;
+}
+
+.stat-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.policy .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.policy-name {
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-top: 0.25rem;
+}
+
+.amount {
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.meta {
+  margin: 0.75rem 0 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.big {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-top: 0.35rem;
+}
+
+.stars {
+  letter-spacing: 0.1em;
+  margin: 0.35rem 0;
+}
+
+.status-pill {
+  display: inline-flex;
+  margin-top: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.circles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .circles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.circle {
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  padding: 0.85rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: #fafafa;
+}
+
+.circle span {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 0.35rem;
+}

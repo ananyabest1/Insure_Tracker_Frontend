@@ -1,0 +1,103 @@
+<h1 class="page-title">Raise a claim</h1>
+<p class="page-sub">Claim details → Upload → Review → Submit</p>
+
+<div class="stepper card" style="padding: 1rem">
+  <ng-container *ngFor="let label of ['Claim details', 'Upload', 'Review', 'Submit']; let i = index; trackBy: trackByIdentity">
+    <div class="step" [class.active]="step() === i + 1" [class.done]="step() > i + 1">
+      <span class="dot">{{ step() > i + 1 ? '✓' : i + 1 }}</span>
+      {{ label }}
+    </div>
+    <ng-container *ngIf="i < 3">
+      <span class="sep">—</span>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="step() === 1">
+  <div class="card" style="margin-top: 1rem">
+    <form [formGroup]="form">
+      <div class="grid cols-2">
+        <div class="field">
+          <label>Policy number<span class="req">*</span></label>
+          <select formControlName="policy">
+            <option value="" disabled selected hidden>Select policy</option>
+            <option>SH-889921</option>
+            <option>SH-992100</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Hospital name<span class="req">*</span></label>
+          <select formControlName="hospital">
+            <option value="" disabled selected hidden>Select hospital</option>
+            <option>Apollo Hospital</option>
+            <option>Fortis</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Patient name<span class="req">*</span></label>
+          <input formControlName="patient" placeholder="Enter patient name" />
+        </div>
+        <div class="field">
+          <label>Claim amount (₹)<span class="req">*</span></label>
+          <input formControlName="amount" placeholder="Enter amount" />
+        </div>
+        <div class="field">
+          <label>Date of admission<span class="req">*</span></label>
+          <input type="date" formControlName="admission" />
+        </div>
+        <div class="field">
+          <label>Date of discharge<span class="req">*</span></label>
+          <input type="date" formControlName="discharge" />
+        </div>
+      </div>
+
+      <div class="field" style="margin-top: 0.75rem">
+        <label>Claim type</label>
+        <div class="toggle">
+          <button type="button" class="btn" [class.btn-primary]="form.controls.type.value === 'Cashless'" (click)="form.controls.type.setValue('Cashless')">Cashless</button>
+          <button type="button" class="btn" [class.btn-primary]="form.controls.type.value === 'Reimbursement'" (click)="form.controls.type.setValue('Reimbursement')">Reimbursement</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="step() === 2">
+  <div class="card" style="margin-top: 1rem">
+    <div class="upload-zone" tabindex="0" role="button">☁<strong>Upload documents</strong>Drag &amp; drop or click to browse (demo)</div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="step() === 3">
+  <div class="card" style="margin-top: 1rem">
+    <h3 class="section-title">Review</h3>
+    <dl class="kv">
+      <div><dt>Patient</dt><dd>{{ form.controls.patient.value || '—' }}</dd></div>
+      <div><dt>Hospital</dt><dd>{{ form.controls.hospital.value || '—' }}</dd></div>
+      <div><dt>Amount</dt><dd>{{ form.controls.amount.value || '—' }}</dd></div>
+      <div><dt>Type</dt><dd>{{ form.controls.type.value }}</dd></div>
+    </dl>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="step() === 4">
+  <div class="card" style="margin-top: 1rem">
+    <h3 class="section-title">Submitted</h3>
+    <p class="page-sub" style="margin: 0">Your claim reference is <strong>CL-2025-NEW</strong> (demo).</p>
+    <a class="btn btn-primary" routerLink="/insurer/claims">Go to my claims</a>
+  </div>
+</ng-container>
+
+<div class="footer-actions">
+  <a class="btn btn-secondary" routerLink="/insurer/claims">Cancel</a>
+  <div class="spacer"></div>
+  <ng-container *ngIf="step() > 1 && step() < 4">
+    <button class="btn btn-secondary" type="button" (click)="back()">Back</button>
+  </ng-container>
+  <ng-container *ngIf="step() < 3">
+    <button class="btn btn-primary" type="button" (click)="next()">Next: {{ step() === 1 ? 'Upload documents' : 'Review' }} →</button>
+  </ng-container>
+  <ng-container *ngIf="step() === 3">
+    <button class="btn btn-primary" type="button" (click)="submit()">Submit claim</button>
+  </ng-container>
+</div>

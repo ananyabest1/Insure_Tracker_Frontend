@@ -1,0 +1,27 @@
+<h1 class="page-title">Feedback</h1>
+<p class="page-sub">How was your experience with our system?</p>
+
+<div class="card" style="padding: 1.25rem">
+  <div class="field">
+    <label>Rating</label>
+    <div class="star-pick">
+      <ng-container *ngFor="let n of [1, 2, 3, 4, 5]; trackBy: trackByIdentity">
+        <button type="button" class="star" [class.on]="stars() >= n" (click)="setStars(n)">★</button>
+      </ng-container>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Your feedback<span class="req">*</span></label>
+      <textarea formControlName="feedback" placeholder="Tell us what worked well"></textarea>
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>How can we improve?<span class="req">*</span></label>
+      <textarea formControlName="improve" placeholder="Share suggestions"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit" style="margin-top: 0.75rem">Submit feedback</button>
+  </form>
+</div>
+
+<p class="page-sub"><a class="link" routerLink="/company/dashboard">Back</a></p>

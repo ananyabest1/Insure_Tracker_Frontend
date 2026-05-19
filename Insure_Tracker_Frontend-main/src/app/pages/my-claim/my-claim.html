@@ -1,0 +1,214 @@
+<!-- my-claim.component.html -->
+
+<div class="dashboard-container">
+
+  <!-- Navbar -->
+  <header class="topbar">
+
+    <div class="logo-section">
+      <div class="logo">
+        <span class="logo-box"></span>
+        <h2>InsureTracker</h2>
+      </div>
+
+      <span class="badge">Insurer</span>
+    </div>
+
+    <nav class="nav-links">
+      <a>Dashboard</a>
+      <a class="active">My Claims</a>
+      <a>Pre-Auth</a>
+      <a>Health Score</a>
+      <a>Ratings</a>
+    </nav>
+
+    <div class="profile-section">
+      <span class="bell">🔔</span>
+      <div class="avatar">RS</div>
+    </div>
+
+  </header>
+
+  <!-- Claim Header -->
+
+  <section class="claim-header">
+
+    <div>
+      <a class="back-link">← My Claims</a>
+
+      <h1>
+        Claim Tracker
+        <span>#CL-2025-001</span>
+      </h1>
+
+      <p>
+        Apollo Hospital · Appendix Surgery · Raised 28 Apr 2025
+      </p>
+    </div>
+
+    <button class="status-btn">Processing</button>
+
+  </section>
+
+  <!-- Stats -->
+
+  <section class="stats-grid">
+
+    <div class="stat-card active-card">
+      <h2>₹80,000</h2>
+      <p>Claim Amount</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>2d 4h 36m</h2>
+      <p>Time Elapsed</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>3 May 2025</h2>
+      <p>Est. Completion</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>5 of 8</h2>
+      <p>Steps Completed</p>
+    </div>
+
+  </section>
+
+  <!-- Progress -->
+
+  <section class="progress-card">
+
+    <div class="progress-header">
+      <h3>Overall Progress</h3>
+      <span>62% complete · 5 of 8 steps</span>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+
+  </section>
+
+  <!-- Main Grid -->
+
+  <section class="main-grid">
+
+    <!-- Timeline -->
+
+    <div class="timeline-card">
+
+      <h3>End-to-End Activity Timeline</h3>
+
+      <p class="small-text">
+        Every step shows who acted and when
+      </p>
+
+      <div class="timeline">
+
+        <div
+          class="timeline-item"
+          *ngFor="let item of timeline"
+          [ngClass]="item.status"
+        >
+
+          <div class="dot"></div>
+
+          <div class="content">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.desc }}</p>
+            <span>{{ item.time }}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Right Section -->
+
+    <div class="right-section">
+
+      <!-- Notification -->
+
+      <div class="card">
+
+        <h3>Notification Log</h3>
+
+        <p class="small-text">
+          Proof of notifications sent by InsureTracker
+        </p>
+
+        <div class="notify-box">
+
+          <div>
+            <h4>Star Health Insurance</h4>
+            <p>Method: Email + Portal</p>
+            <span>Sent: 10:15 AM, 28 Apr</span>
+            <small>↳ Acknowledged 11:30 AM</small>
+          </div>
+
+          <button>Sent ✓</button>
+
+        </div>
+
+        <div class="notify-box">
+
+          <div>
+            <h4>Apollo Hospital</h4>
+            <p>Method: Email + Portal</p>
+            <span>Sent: 10:15 AM, 28 Apr</span>
+            <small>↳ Acknowledged 10:45 AM</small>
+          </div>
+
+          <button>Sent ✓</button>
+
+        </div>
+
+      </div>
+
+      <!-- Claim Details -->
+
+      <div class="card details-card">
+
+        <h3>Claim Details</h3>
+
+        <div class="detail-row">
+          <span>Claim ID</span>
+          <strong>CL-2025-001</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Hospital</span>
+          <strong>Apollo Hospital</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Treatment</span>
+          <strong>Appendix Surgery</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Amount</span>
+          <strong>₹80,000</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Policy</span>
+          <strong>Star Health Premier</strong>
+        </div>
+
+        <div class="detail-row">
+          <span>Assigned Officer</span>
+          <strong>Priya Mehta (Star Health)</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

@@ -1,0 +1,43 @@
+<a class="link" [routerLink]="['/company/claims/review', id]">← Back to review</a>
+
+<h1 class="page-title" style="margin-top: 0.75rem">Decision: {{ id }}</h1>
+<p class="page-sub">Approve or reject with remarks (demo only).</p>
+
+<div class="grid cols-2">
+  <div class="card">
+    <h3 class="section-title">Claim summary</h3>
+    <dl class="kv">
+      <div><dt>Patient</dt><dd>Priya Sharma</dd></div>
+      <div><dt>Policy</dt><dd>SH-889921</dd></div>
+      <div><dt>Hospital</dt><dd>Apollo Hospital</dd></div>
+      <div><dt>Type</dt><dd>Cashless</dd></div>
+      <div><dt>Amount</dt><dd>₹ 1,85,000</dd></div>
+      <div><dt>Admission</dt><dd>May 02, 2025</dd></div>
+    </dl>
+  </div>
+
+  <form class="card" [formGroup]="form" (ngSubmit)="finalize()">
+    <h3 class="section-title">Decision</h3>
+    <div class="radio-row" style="display: flex; gap: 1rem; flex-wrap: wrap">
+      <label class="check"><input type="radio" formControlName="decision" value="Approve" /> Approve claim</label>
+      <label class="check"><input type="radio" formControlName="decision" value="Reject" /> Reject claim</label>
+    </div>
+
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Approved amount (₹)<span class="req">*</span></label>
+      <input formControlName="approvedAmount" />
+    </div>
+
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Remarks (optional)</label>
+      <textarea formControlName="remarks" placeholder="Internal remarks"></textarea>
+    </div>
+
+    <div class="footer-actions" style="margin-top: 1rem">
+      <a class="btn btn-secondary" routerLink="/company/claims">Cancel</a>
+      <button type="button" class="btn btn-secondary" (click)="saveDraft()">Save as draft</button>
+      <div class="spacer"></div>
+      <button class="btn btn-primary" type="submit">Approve claim</button>
+    </div>
+  </form>
+</div>

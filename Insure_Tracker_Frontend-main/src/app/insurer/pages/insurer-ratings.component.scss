@@ -1,0 +1,17 @@
+.star-pick {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.star {
+  border: none;
+  background: transparent;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #d4d4d8;
+  line-height: 1;
+}
+
+.star.on {
+  color: #f59e0b;
+}

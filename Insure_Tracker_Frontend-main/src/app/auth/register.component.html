@@ -1,0 +1,118 @@
+<div class="auth-page auth-page--elevated">
+  <div class="auth-layout auth-layout--wide">
+    <aside class="auth-hero">
+      <div class="auth-hero-badge">New member</div>
+      <h1>Join <span>InsureTracker</span></h1>
+      <p class="auth-hero-desc">Create your insurer profile and start managing health claims with a modern, secure experience.</p>
+    </aside>
+    <div class="auth-panel">
+  <div class="card auth-card wide">
+    <div class="card-cap">Create account</div>
+    <p class="auth-lead">Join InsureTracker as an insurer (demo registration).</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="grid cols-1">
+        <div class="field">
+          <label>Full name<span class="req">*</span></label>
+          <input formControlName="fullName" placeholder="Enter full name" />
+        </div>
+        <div class="field">
+          <label>Email address<span class="req">*</span></label>
+          <input type="email" formControlName="email" placeholder="you@gmail.com" autocomplete="email" />
+          <ng-container *ngIf="form.controls.email.touched && form.controls.email.hasError('required')">
+            <span class="err">Email is required.</span>
+          </ng-container>
+          <ng-container *ngIf="form.controls.email.touched && form.controls.email.hasError('emailDomain')">
+            <span class="err">Use gmail, yahoo, outlook, hotmail, live, icloud, or zoho.</span>
+          </ng-container>
+        </div>
+        <div class="grid cols-2">
+          <div class="field">
+            <label>Mobile number<span class="req">*</span></label>
+            <input
+              formControlName="mobile"
+              placeholder="10-digit mobile"
+              maxlength="10"
+              inputmode="numeric"
+              autocomplete="tel"
+              (input)="onMobileInput()"
+            />
+            <ng-container *ngIf="form.controls.mobile.touched && form.controls.mobile.invalid">
+              <span class="err">Enter exactly 10 digits.</span>
+            </ng-container>
+          </div>
+          <div class="field">
+            <label>Date of birth<span class="req">*</span></label>
+            <input type="date" formControlName="dob" />
+          </div>
+        </div>
+        <div class="grid cols-2">
+          <div class="field">
+            <label>Aadhaar number<span class="req">*</span></label>
+            <input formControlName="aadhaar" placeholder="Enter Aadhaar number" />
+          </div>
+          <div class="field">
+            <label>PAN number<span class="req">*</span></label>
+            <input formControlName="pan" placeholder="Enter PAN" />
+          </div>
+        </div>
+        <div class="grid cols-2">
+          <div class="field">
+            <label>Password<span class="req">*</span></label>
+            <div class="input-icon">
+              <input [type]="showPw() ? 'text' : 'password'" formControlName="password" placeholder="Enter password" autocomplete="new-password" />
+              <button type="button" class="icon-btn eye" (click)="toggle('p1')" [attr.aria-label]="showPw() ? 'Hide password' : 'Show password'">
+                <ng-container *ngIf="showPw(); else _e3128">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M3 3l18 18M10.5 10.5a3 3 0 0 0 4 4M9.9 5.1A10.4 10.4 0 0 1 12 5c5 0 9.3 3.3 10.5 7a10.7 10.7 0 0 1-4.1 5.1M6.4 6.4A10.7 10.7 0 0 0 1.5 12c1.2 3.7 5.5 7 10.5 7 1.2 0 2.4-.2 3.5-.6" />
+                  </svg>
+                </ng-container><ng-template #_e3128>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </ng-template>
+              </button>
+            </div>
+            <ng-container *ngIf="form.controls.password.touched && form.controls.password.hasError('passwordStrength')">
+              <span class="err">Use 8+ chars with upper, lower, number, and special.</span>
+            </ng-container>
+          </div>
+          <div class="field">
+            <label>Confirm password<span class="req">*</span></label>
+            <div class="input-icon">
+              <input [type]="showPw2() ? 'text' : 'password'" formControlName="confirm" placeholder="Confirm password" autocomplete="new-password" />
+              <button type="button" class="icon-btn eye" (click)="toggle('p2')" [attr.aria-label]="showPw2() ? 'Hide password' : 'Show password'">
+                <ng-container *ngIf="showPw2(); else _e4721">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M3 3l18 18M10.5 10.5a3 3 0 0 0 4 4M9.9 5.1A10.4 10.4 0 0 1 12 5c5 0 9.3 3.3 10.5 7a10.7 10.7 0 0 1-4.1 5.1M6.4 6.4A10.7 10.7 0 0 0 1.5 12c1.2 3.7 5.5 7 10.5 7 1.2 0 2.4-.2 3.5-.6" />
+                  </svg>
+                </ng-container><ng-template #_e4721>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </ng-template>
+              </button>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="form.touched && form.hasError('passwordMismatch')">
+          <span class="err">Passwords do not match.</span>
+        </ng-container>
+        <label class="check">
+          <input type="checkbox" formControlName="agree" />
+          I agree to Terms &amp; Privacy Policy
+        </label>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit">Create account →</button>
+      </div>
+    </form>
+
+    <p class="footer-line">Already registered? <a routerLink="/login" class="link link-em">Sign in</a></p>
+  </div>
+    </div>
+  </div>
+</div>

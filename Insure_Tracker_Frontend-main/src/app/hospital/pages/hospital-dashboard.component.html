@@ -1,0 +1,82 @@
+<h1 class="page-title">Welcome back, Apollo Hospital!</h1>
+<p class="page-sub">Operational throughput, documents, and billing at a glance.</p>
+
+<div class="grid cols-4">
+  <div class="card stat">
+    <div class="k">Total claims handled</div>
+    <div class="v">1,248</div>
+    <div class="s">This month</div>
+  </div>
+  <div class="card stat">
+    <div class="k">Pending pre-auth</div>
+    <div class="v">86</div>
+    <div class="s">Requires action</div>
+  </div>
+  <div class="card stat">
+    <div class="k">Uploaded documents</div>
+    <div class="v">342</div>
+    <div class="s">This month</div>
+  </div>
+  <div class="card stat">
+    <div class="k">Billing requests</div>
+    <div class="v">112</div>
+    <div class="s">Pending review</div>
+  </div>
+</div>
+
+<div class="grid cols-3" style="margin-top: 1rem">
+  <div class="card stat">
+    <div class="k">Approval rate</div>
+    <div class="v">92%</div>
+    <div class="s">↑ 5% vs last month</div>
+  </div>
+  <div class="card stat">
+    <div class="k">Avg settlement time</div>
+    <div class="v">12.4 days</div>
+    <div class="s">↓ 1.2 days vs last month</div>
+  </div>
+  <div class="card stat">
+    <div class="k">Patient satisfaction</div>
+    <div class="v">4.6 / 5</div>
+    <div class="s">↑ 0.3 vs last month</div>
+  </div>
+</div>
+
+<div class="card" style="margin-top: 1rem">
+  <div class="toolbar">
+    <h2 style="margin: 0; font-size: 1.05rem">Recent activity</h2>
+    <a class="btn btn-ghost" routerLink="/hospital/pre-auth">View pre-auth</a>
+  </div>
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Reference</th>
+          <th>Patient</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let a of claims.hospitalActivity(); trackBy: trackByIdentity">
+          <tr>
+            <td>{{ a.date }}</td>
+            <td>{{ a.type }}</td>
+            <td><strong>{{ a.ref }}</strong></td>
+            <td>{{ a.patient }}</td>
+            <td><span class="badge {{ badge(a.status) }}">{{ a.status }}</span></td>
+            <td><a class="btn btn-secondary" routerLink="/hospital/documents">View</a></td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="grid cols-3" style="margin-top: 1rem">
+  <a class="card qa" routerLink="/hospital/documents"><span>☁</span>Upload documents</a>
+  <a class="card qa" routerLink="/hospital/billing"><span>📄</span>Update billing</a>
+  <a class="card qa" routerLink="/hospital/pre-auth"><span>🛡</span>View pre-auth</a>
+</div>

@@ -1,0 +1,84 @@
+<ng-container *ngIf="claim(); let c; else claimMissing">
+  <a class="link" routerLink="/company/claims">← Back to claims</a>
+
+  <div class="toolbar" style="margin-top: 0.75rem">
+    <h1 class="page-title" style="margin: 0">Review claim: {{ c.id }}</h1>
+    <span class="badge warn">{{ c.status }}</span>
+  </div>
+  <p class="page-sub">Hospital: {{ c.hospital }} · Patient: {{ c.patient }}</p>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h3 class="section-title">Claim details</h3>
+      <dl class="kv">
+        <div><dt>Hospital</dt><dd>{{ c.hospital }}</dd></div>
+        <div><dt>Patient</dt><dd>{{ c.patient }}</dd></div>
+        <div><dt>Policy number</dt><dd>SH-889921</dd></div>
+        <div><dt>Admission</dt><dd>May 02, 2025</dd></div>
+        <div><dt>Discharge</dt><dd>May 08, 2025</dd></div>
+        <div><dt>Claim amount</dt><dd>{{ c.amount }}</dd></div>
+        <div><dt>Claim type</dt><dd>Cashless</dd></div>
+        <div><dt>Sum insured</dt><dd>₹ 50,00,000</dd></div>
+        <div><dt>Available balance</dt><dd>₹ 32,10,000</dd></div>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h3 class="section-title">Notes</h3>
+      <p class="page-sub" style="margin: 0">Use tabs below to review supporting artifacts (demo content).</p>
+    </div>
+  </div>
+
+  <div class="tabs" style="margin-top: 1rem">
+    <button type="button" class="tab" [class.active]="tab() === 'Documents'" (click)="setTab('Documents')">Documents</button>
+    <button type="button" class="tab" [class.active]="tab() === 'Medical'" (click)="setTab('Medical')">Medical details</button>
+    <button type="button" class="tab" [class.active]="tab() === 'Policy'" (click)="setTab('Policy')">Policy details</button>
+    <button type="button" class="tab" [class.active]="tab() === 'Billing'" (click)="setTab('Billing')">Billing details</button>
+  </div>
+
+  <div class="card" style="margin-top: 0.75rem">
+    <ng-container [ngSwitch]="tab()">
+      <ng-container *ngSwitchCase="'Documents'">
+        <div class="table-wrap" style="border: none">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Document</th>
+                <th>Type</th>
+                <th>Uploaded</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Discharge summary.pdf</td>
+                <td>Medical</td>
+                <td>May 10, 2025</td>
+                <td><button type="button" class="btn btn-secondary">Download</button></td>
+              </tr>
+              <tr>
+                <td>Final bill.pdf</td>
+                <td>Billing</td>
+                <td>May 10, 2025</td>
+                <td><button type="button" class="btn btn-secondary">Download</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <p class="page-sub" style="margin: 0">Placeholder panel for {{ tab() }}.</p>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="footer-actions" style="margin-top: 1rem">
+    <button type="button" class="btn btn-secondary">Request more info</button>
+    <a class="btn btn-secondary" [routerLink]="['/company/claims/decision', c.id]">Reject / approve workflow</a>
+    <div class="spacer"></div>
+    <a class="btn btn-primary" [routerLink]="['/company/claims/decision', c.id]">Proceed to approve</a>
+  </div>
+</ng-container>
+<ng-template #claimMissing>
+  <p>Claim not found.</p>
+</ng-template>

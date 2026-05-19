@@ -1,0 +1,85 @@
+<h1 class="page-title">My profile</h1>
+<p class="page-sub">Company information and security.</p>
+
+<div class="grid cols-2">
+  <form class="card" style="padding: 1.25rem" [formGroup]="company" (ngSubmit)="save()">
+    <h3 class="section-title">Company information</h3>
+    <div class="field">
+      <label>Company name</label>
+      <input formControlName="name" />
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Company email</label>
+      <input formControlName="email" />
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Mobile number</label>
+      <input formControlName="mobile" />
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Address</label>
+      <textarea formControlName="address" style="min-height: 90px"></textarea>
+    </div>
+  </form>
+
+  <form class="card" style="padding: 1.25rem" [formGroup]="passwords">
+    <h3 class="section-title">Change password</h3>
+    <div class="field">
+      <label>Current password</label>
+      <div class="input-icon">
+        <input [type]="show.c ? 'text' : 'password'" formControlName="current" />
+        <button type="button" class="icon-btn" (click)="toggle('c')" [attr.aria-label]="show.c ? 'Hide password' : 'Show password'">
+          <ng-container *ngIf="show.c; else __else1275">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M3 3l18 18M10.5 10.5a3 3 0 0 0 4 4M9.9 5.1A10.4 10.4 0 0 1 12 5c5 0 9.3 3.3 10.5 7a10.7 10.7 0 0 1-4.1 5.1M6.4 6.4A10.7 10.7 0 0 0 1.5 12c1.2 3.7 5.5 7 10.5 7 1.2 0 2.4-.2 3.5-.6" />
+            </svg>
+          </ng-container><ng-template #__else1275>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </ng-template>
+        </button>
+      </div>
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>New password</label>
+      <div class="input-icon">
+        <input [type]="show.n ? 'text' : 'password'" formControlName="next" />
+        <button type="button" class="icon-btn" (click)="toggle('n')" [attr.aria-label]="show.n ? 'Hide password' : 'Show password'">
+          <ng-container *ngIf="show.n; else __else2450">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M3 3l18 18M10.5 10.5a3 3 0 0 0 4 4M9.9 5.1A10.4 10.4 0 0 1 12 5c5 0 9.3 3.3 10.5 7a10.7 10.7 0 0 1-4.1 5.1M6.4 6.4A10.7 10.7 0 0 0 1.5 12c1.2 3.7 5.5 7 10.5 7 1.2 0 2.4-.2 3.5-.6" />
+            </svg>
+          </ng-container><ng-template #__else2450>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </ng-template>
+        </button>
+      </div>
+    </div>
+    <div class="field" style="margin-top: 0.75rem">
+      <label>Confirm password</label>
+      <div class="input-icon">
+        <input [type]="show.cn ? 'text' : 'password'" formControlName="confirm" />
+        <button type="button" class="icon-btn" (click)="toggle('cn')" [attr.aria-label]="show.cn ? 'Hide password' : 'Show password'">
+          <ng-container *ngIf="show.cn; else __else3635">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M3 3l18 18M10.5 10.5a3 3 0 0 0 4 4M9.9 5.1A10.4 10.4 0 0 1 12 5c5 0 9.3 3.3 10.5 7a10.7 10.7 0 0 1-4.1 5.1M6.4 6.4A10.7 10.7 0 0 0 1.5 12c1.2 3.7 5.5 7 10.5 7 1.2 0 2.4-.2 3.5-.6" />
+            </svg>
+          </ng-container><ng-template #__else3635>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </ng-template>
+        </button>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="button" style="margin-top: 1rem" (click)="save()">Save changes</button>
+  </form>
+</div>
+
+<p class="page-sub"><a class="link" routerLink="/login">Logout (demo)</a></p>
